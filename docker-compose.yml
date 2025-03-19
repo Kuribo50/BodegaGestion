@@ -1,0 +1,41 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: railway
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: LCtUiCOhyFVJGplxyyemoSWXBpkflklw
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://postgres:LCtUiCOhyFVJGplxyyemoSWXBpkflklw@db:5432/railway
+      SECRET_KEY: django-insecure-g-0!v=%py_+t946f=7*#pqfr7b9!45orm4(c(ms7-sv8l0&iq%
+      DEBUG: "True"
+      ALLOWED_HOSTS: "*"
+
+  frontend:
+    build: ./frontend
+    command: yarn start
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: http://backend:8000/api/
+
+volumes:
+  postgres_data: 
