@@ -14,7 +14,7 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-g-0!v=%py_+t946f=7*#p
 DEBUG = config('DEBUG', default=True, cast=bool)
 
 # Define los hosts permitidos
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='192.168.23.135,localhost,127.0.0.1,0.0.0.0', cast=Csv())
+ALLOWED_HOSTS = ['*']  # Temporalmente permite todos los hosts para pruebas
 
 # Application definition
 
@@ -108,9 +108,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# Directorio donde se recopilarán los archivos estáticos
-STATIC_ROOT = config('DJANGO_STATIC_ROOT', default=os.path.join(BASE_DIR, 'staticfiles'))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Si tienes archivos estáticos adicionales, puedes agregarlos aquí
 STATICFILES_DIRS = [

@@ -30,7 +30,7 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('gestion.urls')),  # Incluye todas las rutas de gestion bajo /api/
+    path('api/', include('gestion.urls')),  # Asegúrate de que esta ruta esté correctamente configurada
     path('api-auth/', include('rest_framework.urls')),  # Añade esta línea
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
