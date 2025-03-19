@@ -135,10 +135,9 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",        # Para desarrollo local
-    "http://192.168.23.135",        # Frontend en producción
-    "http://192.168.23.135:3000",
-    "http://192.168.80.1:3000",# Frontend en desarrollo
+    "http://localhost:3000",
+    "https://frontend-production-4686.up.railway.app",
+    "https://backend-production-d80c.up.railway.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True  # Permitir cookies y credenciales
